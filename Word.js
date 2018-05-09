@@ -13,18 +13,28 @@ class Word {
 
     printWord () {
         //console.log(this.word);
+        var returnValue = true;
         var wordString = "";
         for (var i = 0; i < this.letterArray.length; i++) {
             var wordString = wordString + " " + this.letterArray[i].getChar();
+            if (!this.letterArray[i].guessed) {
+                returnValue = false;
+            }
         }
-        console.log(wordString);
-        return wordString;
+        console.log("\n\n" + wordString + "\n\n\n\n");
+        return returnValue;
     }
 
     charGuessed (char) {
+        var returnValue = false;
         for (var i = 0; i < this.letterArray.length; i++) {
-            this.letterArray[i].checkChar(char);
+           if (this.letterArray[i].checkChar(char)) {
+               returnValue = true;
+           }
         }
+        //console.log(this.letterArray);
+        return returnValue;
+        
     }
 }
 

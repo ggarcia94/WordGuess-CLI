@@ -1,7 +1,12 @@
 class Letter {
     constructor (char) {
         this.char = String(char);
-        this.guessed = false;
+        if (this.char === ' ') {
+            this.guessed = true;
+        } else {
+            this.guessed = false;
+        }
+        //this.guessed = false;
     }
 
     getChar () {
@@ -17,7 +22,10 @@ class Letter {
     checkChar (char) {
         if (char === this.char) {
             this.guessed = true;
+            return true;
             //console.log("You guessed the letter")
+        } else {
+            return false;
         }
     }
 }
