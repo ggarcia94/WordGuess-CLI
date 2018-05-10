@@ -7,12 +7,9 @@ class Word {
         for (var i = 0; i < this.word.length; i++) {
             this.letterArray.push(new Letter(this.word[i]));    
         }
-
-        //console.log(this.letterArray);
     }
 
     printWord () {
-        //console.log(this.word);
         var returnValue = true;
         var wordString = "";
         for (var i = 0; i < this.letterArray.length; i++) {
@@ -32,7 +29,6 @@ class Word {
                returnValue = true;
            }
         }
-        //console.log(this.letterArray);
         return returnValue;
         
     }

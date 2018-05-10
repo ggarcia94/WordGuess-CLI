@@ -4,15 +4,9 @@ var inquirer = require("inquirer");
 //Variables
 var wrongGuessCount = 10;
 var keepPlaying = true;
-var newWord = new Word("foo");
-
-function checkIfWon() {
-
-}
-
-function checkIfLost() {
-
-}
+var newWord;
+var movieArray = ["THE MATRIX", "SHREK", "ROCKY", "THE BREAKFAST CLUB", "SIXTEEN CANDLES", "INFINITY WAR", "COCO", "RESEVOIR DOGS", "PULP FICTION", ];
+var randomNumber = Math.floor(Math.random() * movieArray.length);
 
 function promptForLetter() {
     if (keepPlaying) {
@@ -26,26 +20,22 @@ function promptForLetter() {
                 }
             ])
             .then(function (input) {
-                //console.log(inquirerResponse.char);
-                //if foo is true then I have guessed letter correctly
-                if (!newWord.charGuessed(input.char)) {
+                //if the charGuessed function returns false then you have guessed an incorrect letter
+                var inputChar = input.char.toUpperCase();
+                if (!newWord.charGuessed(inputChar)) {
                     wrongGuessCount--;
                     console.log("You guessed wrong!");
                     console.log("Incorrect guesses left:", wrongGuessCount);
                     if (wrongGuessCount === 0) {
                         console.log("YOU LOSE!")
                         keepPlaying = false;
-                        //startGame();
                     }
                 }
-                //console.log("Here:",foo);
                 //if printWord is true then I have guessed the word correctly
                 if (newWord.printWord()) {
                     console.log("YOU WON!")
                     keepPlaying = false;
-                    //startGame();
                 }
-                //count++;
                 promptForLetter();
             });
 
@@ -55,19 +45,10 @@ function promptForLetter() {
 
 function startGame() {
     wrongGuessCount = 10;
-    newWord = new Word("the matrix");
+    newWord = new Word(movieArray[randomNumber]);
     newWord.printWord();
     promptForLetter();
 }
 
+
 startGame();
-
-
-
-
-//var newWord = new Word ("eee ffff gggggggg");
-//newWord.printWord();
-//newWord.charGuessed("e");
-//newWord.printWord();
-//newWord.charGuessed("f");
-//newWord.printWord();
